@@ -17,6 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    [[NSUserDefaults standardUserDefaults] setObject:version forKey:@"version_preference"];
+    NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    [[NSUserDefaults standardUserDefaults] setObject:build forKey:@"build_preference"];
+    NSString *githash = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"GITHash"];
+    [[NSUserDefaults standardUserDefaults] setObject:githash forKey:@"githash_preference"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
     return YES;
 }
 

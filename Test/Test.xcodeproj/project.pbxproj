@@ -15,6 +15,7 @@
 		4F60CCD71CC0B43500854405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F60CCD51CC0B43500854405 /* LaunchScreen.storyboard */; };
 		4F60CCF01CC0C62700854405 /* DemoFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F60CCEF1CC0C62700854405 /* DemoFramework.framework */; };
 		4F60CCF21CC0C6BB00854405 /* DemoFramework.framework in Copy DemoFramework */ = {isa = PBXBuildFile; fileRef = 4F60CCEF1CC0C62700854405 /* DemoFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F60CCF61CC0D57E00854405 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F60CCF51CC0D57E00854405 /* Settings.bundle */; };
 		BD4A04C3B52137116A9B0DFA /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FFE4FA6CE51A3B794738B9 /* Pods_Test.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		4F60CCD61CC0B43500854405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F60CCD81CC0B43500854405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F60CCEF1CC0C62700854405 /* DemoFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DemoFramework.framework; sourceTree = "<group>"; };
+		4F60CCF51CC0D57E00854405 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		A06B9A7AD6FB66437E7FAD7C /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				4F60CCD31CC0B43500854405 /* Assets.xcassets */,
 				4F60CCD51CC0B43500854405 /* LaunchScreen.storyboard */,
 				4F60CCD81CC0B43500854405 /* Info.plist */,
+				4F60CCF51CC0D57E00854405 /* Settings.bundle */,
 				4F60CCC71CC0B43500854405 /* Supporting Files */,
 			);
 			path = Test;
@@ -136,6 +139,7 @@
 				2A50A3C1782360961064D33C /* Embed Pods Frameworks */,
 				E021252AD249ADEAED778F08 /* Copy Pods Resources */,
 				4F60CCF11CC0C6A400854405 /* Copy DemoFramework */,
+				4F60CCF41CC0D4AA00854405 /* Run Version Script */,
 			);
 			buildRules = (
 			);
@@ -183,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60CCF61CC0D57E00854405 /* Settings.bundle in Resources */,
 				4F60CCD71CC0B43500854405 /* LaunchScreen.storyboard in Resources */,
 				4F60CCD41CC0B43500854405 /* Assets.xcassets in Resources */,
 				4F60CCD21CC0B43500854405 /* Main.storyboard in Resources */,
@@ -206,6 +211,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Test/Pods-Test-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4F60CCF41CC0D4AA00854405 /* Run Version Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Version Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/build_version.sh\"";
 		};
 		C83B10BD680629B767D20C8B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
