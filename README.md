@@ -9,4 +9,8 @@ Collection of Xcode Script
 
   文件路径：/DemoFramework/framework-universal.sh
   
+- 增加build_version.sh来在编译时根据当前时间更改build version
+
+  文件路径：/Test/build_version.sh
+
 - 待续
