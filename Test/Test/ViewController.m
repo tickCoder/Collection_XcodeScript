@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <DemoFramework/DemoFramework.h>
 
 @interface ViewController ()
 
@@ -17,6 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    DemoFrameworkPublicView *view = [[DemoFrameworkPublicView alloc] init];
+    view.backgroundColor = [UIColor redColor];
+    [self.view addSubview:view];
+    
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *leadConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:15];
+    NSLayoutConstraint *trailConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-15];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-15];
+    [self.view addConstraints:@[heightConstraint, leadConstraint, trailConstraint, bottomConstraint]];
 }
 
 - (void)didReceiveMemoryWarning {
