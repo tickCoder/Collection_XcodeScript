@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4F60CCDE1CC0B68200854405 /* DemoFramework-universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4F60CCE11CC0B68200854405 /* Build configuration list for PBXAggregateTarget "DemoFramework-universal" */;
+			buildPhases = (
+				4F60CCE21CC0B68800854405 /* Universal Framework RunScript */,
+			);
+			dependencies = (
+			);
+			name = "DemoFramework-universal";
+			productName = "DemoFramework-universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		4F60CCB41CC0B42100854405 /* DemoFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F60CCB31CC0B42100854405 /* DemoFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -96,6 +110,9 @@
 					4F60CCAF1CC0B42100854405 = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					4F60CCDE1CC0B68200854405 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 4F60CCAA1CC0B42100854405 /* Build configuration list for PBXProject "DemoFramework" */;
@@ -111,6 +128,7 @@
 			projectRoot = "";
 			targets = (
 				4F60CCAF1CC0B42100854405 /* DemoFramework */,
+				4F60CCDE1CC0B68200854405 /* DemoFramework-universal */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +142,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F60CCE21CC0B68800854405 /* Universal Framework RunScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Universal Framework RunScript";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/framework-universal.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4F60CCAB1CC0B42100854405 /* Sources */ = {
@@ -260,6 +295,20 @@
 			};
 			name = Release;
 		};
+		4F60CCDF1CC0B68200854405 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4F60CCE01CC0B68200854405 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -277,6 +326,15 @@
 			buildConfigurations = (
 				4F60CCB91CC0B42100854405 /* Debug */,
 				4F60CCBA1CC0B42100854405 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F60CCE11CC0B68200854405 /* Build configuration list for PBXAggregateTarget "DemoFramework-universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F60CCDF1CC0B68200854405 /* Debug */,
+				4F60CCE01CC0B68200854405 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
