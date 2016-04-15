@@ -22,12 +22,20 @@
 
 /* Begin PBXBuildFile section */
 		4F60CCB41CC0B42100854405 /* DemoFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F60CCB31CC0B42100854405 /* DemoFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F60CCE71CC0B85000854405 /* DemoFrameworkPublicView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F60CCE51CC0B85000854405 /* DemoFrameworkPublicView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F60CCE81CC0B85000854405 /* DemoFrameworkPublicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60CCE61CC0B85000854405 /* DemoFrameworkPublicView.m */; };
+		4F60CCEB1CC0B86100854405 /* DemoFrameworkPrivateShow.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F60CCE91CC0B86100854405 /* DemoFrameworkPrivateShow.h */; };
+		4F60CCEC1CC0B86100854405 /* DemoFrameworkPrivateShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60CCEA1CC0B86100854405 /* DemoFrameworkPrivateShow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F60CCB01CC0B42100854405 /* DemoFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DemoFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F60CCB31CC0B42100854405 /* DemoFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFramework.h; sourceTree = "<group>"; };
 		4F60CCB51CC0B42100854405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F60CCE51CC0B85000854405 /* DemoFrameworkPublicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoFrameworkPublicView.h; sourceTree = "<group>"; };
+		4F60CCE61CC0B85000854405 /* DemoFrameworkPublicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoFrameworkPublicView.m; sourceTree = "<group>"; };
+		4F60CCE91CC0B86100854405 /* DemoFrameworkPrivateShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoFrameworkPrivateShow.h; sourceTree = "<group>"; };
+		4F60CCEA1CC0B86100854405 /* DemoFrameworkPrivateShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoFrameworkPrivateShow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,10 @@
 			children = (
 				4F60CCB31CC0B42100854405 /* DemoFramework.h */,
 				4F60CCB51CC0B42100854405 /* Info.plist */,
+				4F60CCE51CC0B85000854405 /* DemoFrameworkPublicView.h */,
+				4F60CCE61CC0B85000854405 /* DemoFrameworkPublicView.m */,
+				4F60CCE91CC0B86100854405 /* DemoFrameworkPrivateShow.h */,
+				4F60CCEA1CC0B86100854405 /* DemoFrameworkPrivateShow.m */,
 			);
 			path = DemoFramework;
 			sourceTree = "<group>";
@@ -73,6 +85,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60CCEB1CC0B86100854405 /* DemoFrameworkPrivateShow.h in Headers */,
+				4F60CCE71CC0B85000854405 /* DemoFrameworkPublicView.h in Headers */,
 				4F60CCB41CC0B42100854405 /* DemoFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +179,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60CCEC1CC0B86100854405 /* DemoFrameworkPrivateShow.m in Sources */,
+				4F60CCE81CC0B85000854405 /* DemoFrameworkPublicView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -251,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
