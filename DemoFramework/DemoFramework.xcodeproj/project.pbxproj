@@ -170,7 +170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/framework-universal.sh\"";
+			shellScript = "\"${SRCROOT}/../Scripts/framework-universal.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -353,6 +353,7 @@
 				4F60CCE01CC0B68200854405 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

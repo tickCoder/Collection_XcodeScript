@@ -1,0 +1,89 @@
+
+# 如果命令带非零值返回,立即退出
+# 你写的每个脚本都应该在文件开头加上set -e
+# 这句语句告诉bash如果任何语句的执行结果不是true则应该退出。
+# 这样的好处是防止错误像滚雪球般变大导致一个致命的错误，
+# 而这些错误本应该在之前就被处理掉。
+# 如果要增加可读性，可以使用set -o errexit，它的作用与set -e相同。
+set -e
+
+# 意义不明
+set +u
+
+# 避免递归调用脚本
+if [[ $SF_MASTER_SCRIPT_RUNNING ]]
+then
+exit 0
+fi
+
+# 在参数扩展时，将未设置的的变量以错误对待。
+# 如果在未设置的变量上扩展，shell会打印错误信息，如果没有交互，以一个非0状态退出。
+set -u
+
+# 用户登录到Linux系统后，系统将启动一个用户shell。
+# 在这个shell中，可以使用shell命令或声明变量，也可以创建并运行shell脚本程序。
+# 运行shell脚本程序时，系统将创建一个子shell。
+# 此时，系统中将有两个shell，一个是登录时系统启动的shell，另一个是系统为运行脚本程序创建的shell。
+# 当一个脚本程序运行完毕，脚本shell将终止，返回到执行该脚本之前的shell。
+# 从这种意义上来说，用户可以有许多 shell，每个shell都是由某个shell（称为父shell）派生的。
+# 在子shell中定义的变量只在该子shell内有效。
+# 如果在一个shell脚本程序中定义了一个变量，当该脚本程序运行时，这个定义的变量只是该脚本程序内的一个局部变量，其他的shell不能引用它，
+# 要使某个变量的值可以在其他shell中被改变，可以使用export命令对已定义的变量进行输出。
+# export命令将使系统在创建每一个新的shell时，定义这个变量的一个拷贝。这个过程称之为变量输出。
+# 标记为正在执行
+export SF_MASTER_SCRIPT_RUNNING=1
+
+
+# 思路
+# 编译产生的位置
+
+SF_TARGET_NAME=${TARGET_NAME}
+SF_EXECUTABLE_PATH="${SF_TARGET_NAME}.framework/${SF_TARGET_NAME}"
+SF_WRAPPER_NAME="${SF_TARGET_NAME}.framework"
+
+echo "xxx"
+echo ${TARGET_NAME};
+echo "xxx"
+
+if [[ "$SDK_NAME" =~ ([A-Za-z]+) ]]
+then
+SF_SDK_PLATFORM=${BASH_REMATCH[1]}
+else
+echo "Could not find platform name from SDK_NAME: $SDK_NAME"
+exit 1
+fi
+
+if [[ "$SDK_NAME" =~ ([0-9]+.*$) ]]
+then
+SF_SDK_VERSION=${BASH_REMATCH[1]}
+else
+echo "Could not find sdk version from SDK_NAME: $SDK_NAME"
+exit 1
+fi
+
+if [[ "$SF_SDK_PLATFORM" = "iphoneos" ]]
+then
+SF_OTHER_PLATFORM=iphonesimulator
+else
+SF_OTHER_PLATFORM=iphoneos
+fi
+
+if [[ "$BUILT_PRODUCTS_DIR" =~ (.*)$SF_SDK_PLATFORM$ ]]
+then
+SF_OTHER_BUILT_PRODUCTS_DIR="${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}"
+else
+echo "Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR"
+exit 1
+fi
+
+rm -rf buildProducts
+mkdir buildProducts
+
+# Build the other platform.
+xcrun xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" SYMROOT="${SYMROOT}" $ACTION
+
+# Smash the two static libraries into one fat binary and store it in the .framework
+xcrun lipo -create "${BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.framework/$PRODUCT_NAME" "${SF_OTHER_BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.framework/$PRODUCT_NAME" -output "${PROJECT_DIR}/buildProducts/$PRODUCT_NAME"
+
+cp -rf ${BUILT_PRODUCTS_DIR}/$PRODUCT_NAME.framework ${PROJECT_DIR}/buildProducts
+mv ${PROJECT_DIR}/buildProducts/$PRODUCT_NAME ${PROJECT_DIR}/buildProducts/$PRODUCT_NAME.framework

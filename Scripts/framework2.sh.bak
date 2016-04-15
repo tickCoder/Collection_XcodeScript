@@ -1,0 +1,55 @@
+# 此脚本是为了生成支持模拟器、真机的framework
+
+# 设置framework的名称，一般取工程名或者target名
+# PROJECT_NAME
+FRAMEWORK_NAME=${TARGET_NAME}
+
+# 设置生成framework的位置
+INSTALL_DIR=${SRCROOT}/Products/${FRAMEWORK_NAME}.framework
+
+# 默认的编译目录，如果有改动，需要相应填写
+# WORKING_DIR=build
+WORKING_DIR=build
+
+# 默认的真机编译目录
+DEVICE_DIR=${WORKING_DIR}/Release-iphoneos/${FRAMEWORK_NAME}.framework
+
+# 默认的模拟器编译目录
+SIMULATOR_DIR=${WORKING_DIR}/Release-iphonesimulator/${FRAMEWORK_NAME}.framework
+
+
+echo "xxx"
+echo ${CONFIGURATION}
+echo ${WORKING_DIR}
+echo ${DEVICE_DIR}
+echo ${SIMULATOR_DIR}
+echo "xxx"
+
+# Clean、Build真机、模拟器的framework，如果有其它配置需要编译，可以将Release更改成相应名称
+xcodebuild -configuration "Release" -target "${FRAMEWORK_NAME}" -sdk iphoneos clean build
+xcodebuild -configuration "Release" -target "${FRAMEWORK_NAME}" -sdk iphonesimulator clean build
+
+# if [ "${CONFIGURATION}" = "Release" ]; then  
+# fi
+
+# 清除生成目录中旧的framework
+if [ -d "${INSTALL_DIR}" ]
+then
+rm -rf "${INSTALL_DIR}"
+fi
+
+# 将生成的文件复制到framework生成目录
+mkdir -p "${INSTALL_DIR}"
+cp -R "${DEVICE_DIR}/" "${INSTALL_DIR}/"
+
+# 合并成一个（可使用lipo -info FRAMEWORK_NAME）查看其支持的架构
+lipo -create "${DEVICE_DIR}/${FRAMEWORK_NAME}" "${SIMULATOR_DIR}/${FRAMEWORK_NAME}" -output "${INSTALL_DIR}/${FRAMEWORK_NAME}"
+
+# 删除默认build目录
+rm -r "${WORKING_DIR}"
+
+# 打开生成目录
+open "${INSTALL_DIR}"
+
+
+

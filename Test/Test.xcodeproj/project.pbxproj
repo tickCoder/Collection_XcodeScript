@@ -224,7 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/build_version.sh\"";
+			shellScript = "\"${SRCROOT}/../Scripts/build_version.sh\"";
 		};
 		C83B10BD680629B767D20C8B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
